@@ -31,6 +31,7 @@ public class Ventanas extends JFrame {
 				try {
 					Ventanas frame = new Ventanas();
 					frame.setVisible(true);
+					frame.setTitle("Flujo de datos");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

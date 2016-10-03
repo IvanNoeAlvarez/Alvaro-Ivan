@@ -6,7 +6,9 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import java.awt.Insets;
 import java.awt.Panel;
@@ -34,6 +36,7 @@ import java.nio.file.Files;
 import java.awt.event.ActionEvent;
 
 public class Comparar extends JPanel {
+	private Comparar esto = this;
 	private JTextField textField;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
@@ -67,6 +70,14 @@ public class Comparar extends JPanel {
 					System.out.print(fichero.getName()+" = ");
 					System.out.println(fichero2.getName()+" ?");
 					System.out.println(compara(fichero, fichero2));
+					if (compara(fichero, fichero2))
+						JOptionPane.showMessageDialog(esto,
+							    "Los ficheros son idénticos.");
+					else
+						JOptionPane.showMessageDialog(esto,
+							    "Los ficheros no son iguales.",
+							    "Lo siento",
+							    JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -114,7 +125,7 @@ public class Comparar extends JPanel {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}		
 		if (igual)
 			return true;
 		else
