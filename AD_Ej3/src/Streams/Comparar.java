@@ -64,8 +64,8 @@ public class Comparar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				cogeArchivos();
 				if (fichero2 != null) {
-					System.out.println(fichero.getName());
-					System.out.println(fichero2.getName());
+					System.out.print(fichero.getName()+" = ");
+					System.out.println(fichero2.getName()+" ?");
 					System.out.println(compara(fichero, fichero2));
 				}
 			}
@@ -100,18 +100,20 @@ public class Comparar extends JPanel {
 		try {
 			FileReader fl1 = new FileReader(fichero);
 			FileReader fl2 = new FileReader(fichero2);
-			BufferedReader br1 = new BufferedReader(fl1);
-			BufferedReader br2 = new BufferedReader(fl2);
-			int str;
-			while ((str = fl1.read()) != -1) {
-				System.out.print((char) str);
-				/*
-				 * if (fl1.read() == fl2.read()) igual = true; else igual =
-				 * false;
-				 */
+			int contador=0;//contador que uso para saber cuantos caracteres tiene el documento. 
+			while ((fl1.read()) != -1) {
+				contador++;
+			}
+			//Reasigno fl1 ya que el metodo reset() no funciona bien.
+			fl1 = new FileReader(fichero);
+			for (int i = 0; i < contador; i++) {
+				if (fl1.read()==fl2.read()) 
+					igual=true;
+				else
+					igual=false;
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		if (igual)
 			return true;
